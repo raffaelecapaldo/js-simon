@@ -6,6 +6,8 @@ const playButton = document.getElementById("play")
 const checkButton = document.getElementById("check")
 
 const boxNumbers = document.getElementById("numbers");
+const boxCorrectNumbers = document.getElementById("correct-numbers");
+
 
 
 //Funzione per generare TOT numeri casuali da 1 a 100
@@ -38,13 +40,22 @@ function playGame() {
 
 
   function checkNumbers() {
+    let howManyGuessed = 0;
+    boxCorrectNumbers.innerHTML ="";
     for (let i = 0; i < NUMBERS; i++) {
       if (guessNumbers.includes(parseInt(userNumbers[i].value))) {
-        console.log("Numero trovato! è" + userNumbers[i].value);
+        boxCorrectNumbers.innerHTML += `<button type="button" class="btn btn-dark">${userNumbers[i].value}</button>`
+        howManyGuessed++;
       }
+
     }
+    console.log(howManyGuessed);
+   // for (number of correctNumbers) {
+    //  boxCorrectNumbers.innerHTML = `<button type="button" class="btn btn-dark">${correctnumbers[number]}</button>`
+    }
+
   }
-}
+
 
 function hideNumbers() {
   boxNumbers.classList.add("d-none");
