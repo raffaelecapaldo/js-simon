@@ -9,7 +9,7 @@ const input = document.getElementById("insert-numbers");
 const boxCorrectNumbers = document.getElementById("correct-numbers");
 const infoNumbers = document.getElementById("info-numbers");
 const guessSection = document.getElementById("guess-section");
-
+let x = 0;
 //Funzione per generare TOT numeri casuali da 1 a 100
 function generateNumbers(howManyNumbers) {
   const numbers = [];
@@ -23,8 +23,8 @@ function generateNumbers(howManyNumbers) {
 }
 playButton.addEventListener("click", playGame)
 function playGame() {
-  playButton.classList.add("disabled");//troppi bug a dar la possibilità di far resettare il gioco prima dello scadere del set timeout
-  //tutti i click poi eseguono tot volte la funzione al suo scadere, quindi disattivo tale possibilità.
+ ;
+  playButton.classList.add("disabled");
   showTimer(30);//Mostro timer di 30 sec
   const userNumbers = document.querySelectorAll(".form-control");
   infoNumbers.innerHTML = ""
@@ -35,11 +35,14 @@ function playGame() {
   guessNumbers = generateNumbers(NUMBERS);//Genera 5 numeri casuali
   boxNumbers.classList.remove("d-none");
   boxNumbers.innerHTML = "";
-  for (let i = 0; i < NUMBERS; i++)//Per ogni numero 
+  for (let i = 0; i < NUMBERS; i++) {//Per ogni numero 
     boxNumbers.innerHTML += `<button type="button" class="btn btn-dark">${guessNumbers[i]}</button>`//Inserisci un box col relativo numero
+  }
   hidetimer = setTimeout(hideNumbers, 30000);//Dopo 30 secondi chiama la funzione per nascondere il box coi numeri
-  checkButton.addEventListener("click", checkNumbers);
-
+ if (x === 0) {
+  checkButton.addEventListener("click", checkNumbers)
+  x++;
+ }
   function checkNumbers() {
     playButton.classList.remove("disabled");
     input.classList.add("d-none");
