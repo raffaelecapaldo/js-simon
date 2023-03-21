@@ -3,6 +3,8 @@ Dopo 30 secondi i numeri scompaiono e l'utente deve inserire, i numeri che ha vi
 Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
 */
 const playButton = document.getElementById("play")
+const boxNumbers = document.getElementById("numbers");
+
 
 //Funzione per generare TOT numeri casuali da 1 a 100
 function generateNumbers(howManyNumbers) {
@@ -21,7 +23,13 @@ playButton.addEventListener("click", playGame)
 function playGame () {
   NUMBERS = 5;
   guessNumbers = generateNumbers(NUMBERS);
-  const boxNumbers = document.getElementById("numbers");
+  boxNumbers.classList.remove("d-none");
+  boxNumbers.innerHTML = "";
   for(let i = 0; i < NUMBERS; i++)
   boxNumbers.innerHTML += `<button type="button" class="btn btn-dark">${guessNumbers[i]}</button>`
+  setTimeout(hideNumbers, 5000);
+}
+
+function hideNumbers () {
+  boxNumbers.classList.add("d-none");
 }
