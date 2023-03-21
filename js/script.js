@@ -10,6 +10,7 @@ const boxCorrectNumbers = document.getElementById("correct-numbers");
 const infoNumbers = document.getElementById("info-numbers");
 const guessSection = document.getElementById("guess-section");
 let timer;//Globale o non riesco a resettarlo da dentro a playGame
+let hidetimer;
 
 //Funzione per generare TOT numeri casuali da 1 a 100
 function generateNumbers(howManyNumbers) {
@@ -24,8 +25,9 @@ function generateNumbers(howManyNumbers) {
 }
 playButton.addEventListener("click", playGame)
 function playGame() {
+  clearInterval(hidetimer);//Uccido hidetimer se l'utente mi ha riavviato la partita prima dello scadere dei 30 sec (altrimenti timer e hidetimer non coincidono più)
   clearInterval(timer);//Uccido intervallo se è stata interrota una partita prima dei 30 sec
-  showTimer(30);//Mostro timer di 30 sec
+  showTimer(10);//Mostro timer di 30 sec
   const userNumbers = document.querySelectorAll(".form-control");
   let howManyGuessed = 0;//Contatore numeri indovinati
   infoNumbers.innerHTML = ""
@@ -38,7 +40,7 @@ function playGame() {
   boxNumbers.innerHTML = "";
   for (let i = 0; i < NUMBERS; i++)//Per ogni numero 
     boxNumbers.innerHTML += `<button type="button" class="btn btn-dark">${guessNumbers[i]}</button>`//Inserisci un box col relativo numero
-  setTimeout(hideNumbers, 30000);//Dopo 30 secondi chiama la funzione per nascondere il box coi numeri
+  hidetimer = setTimeout(hideNumbers, 30000);//Dopo 30 secondi chiama la funzione per nascondere il box coi numeri
   checkButton.addEventListener("click", checkNumbers, { once: true });
 
   function checkNumbers() {
@@ -52,14 +54,14 @@ function playGame() {
 
     }
     console.log(howManyGuessed);
-     if (howManyGuessed == NUMBERS) {//Se hai indovinato tutti i numeri, hai vinto
+    if (howManyGuessed == NUMBERS) {//Se hai indovinato tutti i numeri, hai vinto
       infoNumbers.innerHTML = `<span class="text-success fw-bold fs-5">Hai indovinato: tutti i numeri!!</span>`
     }
 
     else if (howManyGuessed == 1) {//Se hai indovinato 1 numero soltanto scrivi NUMERO dopo il contatore stampato
       infoNumbers.innerHTML = `<span class="text-warning fw-bold fs-5">Hai indovinato: ${howManyGuessed} numero</span>`
     }
-    
+
     else {//Altrimenti scrivi NUMERI dopo il contatore stampato
       infoNumbers.innerHTML = `<span class="text-warning fw-bold fs-5">Hai indovinato: ${howManyGuessed} numeri</span>`
     }
