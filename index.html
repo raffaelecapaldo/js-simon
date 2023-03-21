@@ -7,52 +7,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/style.css">
-
+  <link rel="stylesheet" href="css/style.css">
   <title>Indovina i numeri</title>
 </head>
 
 <body>
   <div class="container-fluid d-flex justify-content-center">
     <div class="card mt-3" style="width: 20rem;">
-      <img src="img/guess.webp" class="card-img-top"
-        alt="numbers">
+      <img src="img/guess.webp" class="card-img-top" alt="numbers">
       <div class="card-body">
         <h5 class="card-title text-center">Indovina i numeri!</h5>
-        <p class="text-center">Ti verranno mostrati 5 numeri, hai 30 secondi per memorizzarli ed inserire quelli che ricordi successivamente</p>
+        <p class="text-center">Ti verranno mostrati 5 numeri, hai 30 secondi per memorizzarli ed inserire quelli che
+          ricordi successivamente</p>
         <p class="card-text d-flex justify-content-center">
-          
           <button type="button" id="play" class="btn btn-primary">START</button>
-          <div id="numbers" class="d-flex justify-content-between mb-1">
-
-          </div>
-          <div id="guess-section" class="d-none">
-            <div id="insert-numbers">
-          <p class="text-center">Inserisci i numeri che ricordi</p>
-
-          <div id="guessNumber">
-            <div class="input-group mb-3">
-              <input type="number" class="form-control">
-              <input type="number" class="form-control">
-              <input type="number" class="form-control">
-              <input type="number" class="form-control">
-              <input type="number" class="form-control">
-              <button type="button" id="check" class="btn btn-success">Invia</button>
-
+        <div class="text-center text-danger fw-bold mb-2 fs-3" id="timer"></div>
+        <div id="numbers" class="d-flex justify-content-between mb-1">
+        </div>
+        <div id="guess-section" class="d-none">
+          <div id="insert-numbers">
+            <p class="text-center">Inserisci i numeri che ricordi</p>
+            <div id="guessNumber">
+              <div class="input-group mb-3">
+                <input type="number" class="form-control">
+                <input type="number" class="form-control">
+                <input type="number" class="form-control">
+                <input type="number" class="form-control">
+                <input type="number" class="form-control">
+                <button type="button" id="check" class="btn btn-success">Invia</button>
+              </div>
             </div>
           </div>
-        </div>
           <p class="text-center" id="info-numbers"></p>
           <div class="d-flex justify-content-center" id="correct-numbers">
-            
           </div>
         </div>
-
 
       </div>
     </div>
   </div>
-
   <script src="js/script.js"></script>
   <script src="js/utility.js"></script>
 </body>

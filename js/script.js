@@ -4,14 +4,12 @@ Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei num
 */
 const playButton = document.getElementById("play");
 const checkButton = document.getElementById("check");
-
 const boxNumbers = document.getElementById("numbers");
 const input = document.getElementById("insert-numbers");
-
 const boxCorrectNumbers = document.getElementById("correct-numbers");
 const infoNumbers = document.getElementById("info-numbers");
 const guessSection = document.getElementById("guess-section");
-
+let timer;//Globale o non riesco a resettarlo da dentro a playGame
 
 //Funzione per generare TOT numeri casuali da 1 a 100
 function generateNumbers(howManyNumbers) {
@@ -24,15 +22,14 @@ function generateNumbers(howManyNumbers) {
   }
   return numbers;
 }
-
 playButton.addEventListener("click", playGame)
-
 function playGame() {
+  clearInterval(timer);//Uccido intervallo se è stata interrota una partita prima dei 30 sec
+  showTimer(30);//Mostro timer di 30 sec
   const userNumbers = document.querySelectorAll(".form-control");
   let howManyGuessed = 0;//Contatore numeri indovinati
   infoNumbers.innerHTML = ""
   input.classList.remove("d-none");
-
   boxCorrectNumbers.innerHTML = "";
   guessSection.classList.add("d-none");
   NUMBERS = 5;//Numeri da indovinare
@@ -42,20 +39,16 @@ function playGame() {
   for (let i = 0; i < NUMBERS; i++)//Per ogni numero 
     boxNumbers.innerHTML += `<button type="button" class="btn btn-dark">${guessNumbers[i]}</button>`//Inserisci un box col relativo numero
   setTimeout(hideNumbers, 30000);//Dopo 30 secondi chiama la funzione per nascondere il box coi numeri
-
   checkButton.addEventListener("click", checkNumbers, { once: true });
-
 
   function checkNumbers() {
     input.classList.add("d-none");
-
     for (let i = 0; i < NUMBERS; i++) {
       if (guessNumbers.includes(parseInt(userNumbers[i].value))) {//Se uno dei numeri inseriti dall'utente corrisponde ai numeri generati precedentemente
         boxCorrectNumbers.innerHTML += `<button type="button" class="btn btn-dark me-1">${userNumbers[i].value}</button>`;//Inseriscilo nel box dei numeri indovinati
         howManyGuessed++;// Ed incrementa il contatore dei numeri indovinati
       }
       userNumbers[i].value = "";//Svuota i campi per la prossima giocata
-
 
     }
     console.log(howManyGuessed);
@@ -64,18 +57,29 @@ function playGame() {
     }
     else if (howManyGuessed == NUMBERS) {//Se hai indovinato tutti i numeri, hai vinto
       infoNumbers.innerHTML = `<span class="text-success">Hai indovinato: tutti i numeri!!</span>`
-
     }
-
     else {//Altrimenti scrivi NUMERI dopo il contatore stampato
       infoNumbers.innerHTML = `Hai indovinato: ${howManyGuessed} numeri`
     }
   }
-
 }
-
 
 function hideNumbers() {//Funzione per nascondere i numeri
   boxNumbers.classList.add("d-none");
   guessSection.classList.remove("d-none");
+}
+function showTimer(num) {//Funzione che passato un determinato numero lo decrementa e stampa nell'HTML
+  let time = num;//Numero
+  const timerBox = document.getElementById("timer");
+  timerBox.innerText = time;//Stampo inizio timer
+  timer = setInterval(() => {//
+    if (time == 1) {//Arrivati a 1 cancello il contenuto del box timer e uccido setInterval
+      clearInterval(timer);
+      timerBox.innerHTML = "";
+    }
+    else {//Ogni secondo decremento e ristampo
+      time--;
+      timerBox.innerText = time;
+    }
+  }, 1000);
 }
