@@ -27,7 +27,7 @@ playButton.addEventListener("click", playGame)
 function playGame() {
   clearInterval(hidetimer);//Uccido hidetimer se l'utente mi ha riavviato la partita prima dello scadere dei 30 sec (altrimenti timer e hidetimer non coincidono più)
   clearInterval(timer);//Uccido intervallo se è stata interrota una partita prima dei 30 sec
-  showTimer(10);//Mostro timer di 30 sec
+  showTimer(30);//Mostro timer di 30 sec
   const userNumbers = document.querySelectorAll(".form-control");
   let howManyGuessed = 0;//Contatore numeri indovinati
   infoNumbers.innerHTML = ""
