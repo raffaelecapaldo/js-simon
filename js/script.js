@@ -49,6 +49,8 @@ function playGame() {
       if (guessNumbers.includes(parseInt(userNumbers[i].value))) {//Se uno dei numeri inseriti dall'utente corrisponde ai numeri generati precedentemente
         boxCorrectNumbers.innerHTML += `<button type="button" class="btn btn-dark me-1">${userNumbers[i].value}</button>`;//Inseriscilo nel box dei numeri indovinati
         howManyGuessed++;// Ed incrementa il contatore dei numeri indovinati
+        const indexToRemove = guessNumbers.indexOf(parseInt(userNumbers[i].value));//Trova index nell'array dei numeri corretti del numero indovinato
+        guessNumbers.splice(indexToRemove, 1);//Rimuovi il numero indovinato (altrimenti sarebbe possibile concludere il gioco inserendo un solo numero esatto in tutti e 5 i campi)
       }
       userNumbers[i].value = "";//Svuota i campi per la prossima giocata
 
