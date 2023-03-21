@@ -18,29 +18,34 @@
         alt="numbers">
       <div class="card-body">
         <h5 class="card-title text-center">Indovina i numeri!</h5>
+        <p class="text-center">Ti verranno mostrati 5 numeri, hai 30 secondi per memorizzarli ed inserire quelli che ricordi successivamente</p>
         <p class="card-text d-flex justify-content-center">
           
           <button type="button" id="play" class="btn btn-primary">START</button>
           <div id="numbers" class="d-flex justify-content-between mb-1">
 
           </div>
+          <div id="guess-section" class="d-none">
+            <div id="insert-numbers">
           <p class="text-center">Inserisci i numeri che ricordi</p>
 
-          <div id="guessNumber" class="d-flex justify-content-between">
+          <div id="guessNumber">
             <div class="input-group mb-3">
-              <input type="text" class="form-control">
-              <input type="text" class="form-control">
-              <input type="text" class="form-control">
-              <input type="text" class="form-control">
-              <input type="text" class="form-control">
+              <input type="number" class="form-control">
+              <input type="number" class="form-control">
+              <input type="number" class="form-control">
+              <input type="number" class="form-control">
+              <input type="number" class="form-control">
               <button type="button" id="check" class="btn btn-success">Invia</button>
 
             </div>
           </div>
-          <p>Numeri indovinati </p>
+        </div>
+          <p class="text-center" id="info-numbers"></p>
           <div id="correct-numbers">
-            AAAA
+            
           </div>
+        </div>
 
 
       </div>
