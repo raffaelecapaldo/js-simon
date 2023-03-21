@@ -3,6 +3,8 @@ Dopo 30 secondi i numeri scompaiono e l'utente deve inserire, i numeri che ha vi
 Dopo che sono stati inseriti i 5 numeri, il software dice quanti e quali dei numeri da indovinare sono stati individuati.
 */
 const playButton = document.getElementById("play")
+const checkButton = document.getElementById("check")
+
 const boxNumbers = document.getElementById("numbers");
 
 
@@ -10,26 +12,40 @@ const boxNumbers = document.getElementById("numbers");
 function generateNumbers(howManyNumbers) {
   const numbers = [];
   while (numbers.length < howManyNumbers) {
-      const number = getRandomInt(1, 100);
-      if (!numbers.includes(number)) {
-          numbers.push(number);
-      }
+    const number = getRandomInt(1, 100);
+    if (!numbers.includes(number)) {
+      numbers.push(number);
+    }
   }
   return numbers;
 }
 
 playButton.addEventListener("click", playGame)
 
-function playGame () {
+
+function playGame() {
   NUMBERS = 5;
   guessNumbers = generateNumbers(NUMBERS);
   boxNumbers.classList.remove("d-none");
   boxNumbers.innerHTML = "";
-  for(let i = 0; i < NUMBERS; i++)
-  boxNumbers.innerHTML += `<button type="button" class="btn btn-dark">${guessNumbers[i]}</button>`
+  for (let i = 0; i < NUMBERS; i++)
+    boxNumbers.innerHTML += `<button type="button" class="btn btn-dark">${guessNumbers[i]}</button>`
   setTimeout(hideNumbers, 5000);
+  const userNumbers = document.querySelectorAll(".form-control");
+  // const userNumbers = [];
+  checkButton.addEventListener("click", checkNumbers);
+  console.log(guessNumbers);
+
+
+  function checkNumbers() {
+    for (let i = 0; i < NUMBERS; i++) {
+      if (guessNumbers.includes(parseInt(userNumbers[i].value))) {
+        console.log("Numero trovato! è" + userNumbers[i].value);
+      }
+    }
+  }
 }
 
-function hideNumbers () {
+function hideNumbers() {
   boxNumbers.classList.add("d-none");
 }
