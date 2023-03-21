@@ -41,7 +41,7 @@ function playGame() {
   boxNumbers.innerHTML = "";
   for (let i = 0; i < NUMBERS; i++)//Per ogni numero 
     boxNumbers.innerHTML += `<button type="button" class="btn btn-dark">${guessNumbers[i]}</button>`//Inserisci un box col relativo numero
-  setTimeout(hideNumbers, 1000);//Dopo 30 secondi chiama la funzione per nascondere il box coi numeri
+  setTimeout(hideNumbers, 30000);//Dopo 30 secondi chiama la funzione per nascondere il box coi numeri
 
   checkButton.addEventListener("click", checkNumbers, { once: true });
 
