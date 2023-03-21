@@ -41,7 +41,7 @@ function playGame() {
   boxNumbers.innerHTML = "";
   for (let i = 0; i < NUMBERS; i++)
     boxNumbers.innerHTML += `<button type="button" class="btn btn-dark">${guessNumbers[i]}</button>`
-  setTimeout(hideNumbers, 5000);
+  setTimeout(hideNumbers, 30000);
   const userNumbers = document.querySelectorAll(".form-control");
   checkButton.addEventListener("click", checkNumbers);
 
@@ -62,9 +62,13 @@ function playGame() {
     if (howManyGuessed == 1) {
       infoNumbers.innerHTML = `Hai indovinato: ${howManyGuessed} numero`
     }
+    else if (howManyGuessed == NUMBERS) {
+      infoNumbers.innerHTML = `<span class="text-success">Hai indovinato: tutti i numeri!!</span>`
+
+    }
+
     else {
       infoNumbers.innerHTML = `Hai indovinato: ${howManyGuessed} numeri`
-
     }
   }
 
