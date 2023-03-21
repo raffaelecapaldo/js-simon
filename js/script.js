@@ -64,6 +64,10 @@ function playGame() {
       infoNumbers.innerHTML = `<span class="text-warning fw-bold fs-5">Hai indovinato: ${howManyGuessed} numero</span>`
     }
 
+    else if (howManyGuessed == 0) {
+      infoNumbers.innerHTML = `<span class="text-danger fw-bold fs-5">Hai indovinato: ${howManyGuessed} numeri</span>`
+    }
+
     else {//Altrimenti scrivi NUMERI dopo il contatore stampato
       infoNumbers.innerHTML = `<span class="text-warning fw-bold fs-5">Hai indovinato: ${howManyGuessed} numeri</span>`
     }
